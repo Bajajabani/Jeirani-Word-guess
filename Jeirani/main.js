@@ -42,7 +42,7 @@ while (replay) {
 
   if (diff === 0) {
     alert("შედეგი: ფრე");
-  } else if (diff > 0 == diff % 2) {
+  } else if (Number(diff > 0) === Math.abs(diff % 2)) {
     alert("შედეგი: გამარჯვებულია მომხმარებელი N1");
   } else {
     alert("შედეგი: გამარჯვებულია მომხმარებელი N2");

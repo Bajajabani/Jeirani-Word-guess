@@ -11,7 +11,7 @@ const fruits = [
   "kiwi",
 ];
 
-const triesPrompt = "Input number of tries or 'infinite':";
+const triesPrompt = "Input number of tries, 'infinite' or 'auto':";
 let replay = true;
 
 while (replay) {
@@ -20,6 +20,7 @@ while (replay) {
     !(
       triesN === null ||
       triesN.toLowerCase() === "infinite" ||
+      triesN.toLowerCase() === "auto" ||
       (!isNaN(Number(triesN)) && Number.isInteger(Number(triesN)) && Number(triesN) > 0)
     )
   ) {
@@ -32,7 +33,8 @@ while (replay) {
 
   const fruit = fruits[Math.round(Math.random() * fruits.length)];
   const guesses = [];
-  let triesLeft = triesN === "infinite" ? -1 : Number(triesN);
+  let triesLeft =
+    triesN === "infinite" ? -1 : triesN === "auto" ? fruit.length + 2 : Number(triesN);
   let guess = "";
 
   for (let i = 0; i < fruit.length; i++) {
@@ -57,10 +59,8 @@ while (replay) {
         alert("Input length must be 1.");
       } else if (guesses.includes(guess.toLowerCase())) {
         alert("Letter already guessed.");
-      } else if (!isNaN(Number(guess))) {
-        alert("Can't guess a number.");
       } else if (guess.toLowerCase() === guess.toUpperCase()) {
-        alert("Input not a letter.");
+        alert("Input not an English letter.");
       } else {
         if (fruit.includes(guess.toLowerCase())) {
           for (let i = 0; i < fruit.length; i++) {
