@@ -15,6 +15,8 @@ const choices = [
 
 const promptText = "\nაირჩიე ერთ-ერთი:\n    1) მაკრატელი\n    2) ჭა\n    3) ქაღალდი\n";
 const failText = "უცნობი არჩევანი, ცადე თავიდან.";
+let winCount1 = 0;
+let winCount2 = 0;
 let replay = true;
 
 while (replay) {
@@ -39,14 +41,19 @@ while (replay) {
   const valChoice1 = Math.floor(choices.indexOf(choice1.toLowerCase()) / (choices.length / 3));
   const valChoice2 = Math.floor(choices.indexOf(choice2.toLowerCase()) / (choices.length / 3));
   const diff = valChoice1 - valChoice2;
+  let result;
 
   if (diff === 0) {
-    alert("შედეგი: ფრე");
+    result = "შედეგი: ფრე.";
   } else if (Number(diff > 0) === Math.abs(diff % 2)) {
-    alert("შედეგი: გამარჯვებულია მომხმარებელი N1");
+    result = "შედეგი: გამარჯვებულია მომხმარებელი N1.";
+    winCount1++;
   } else {
-    alert("შედეგი: გამარჯვებულია მომხმარებელი N2");
+    result = "შედეგი: გამარჯვებულია მომხმარებელი N2.";
+    winCount2++;
   }
+
+  alert(result + `\nანგარიში: ${winCount1} - ${winCount2}.`);
 
   replay = confirm("ცადე თავიდან?");
 }
