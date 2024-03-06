@@ -11,6 +11,19 @@ const fruits = [
   "kiwi",
 ];
 
+const hints = [
+  "Yellow, Peel, Tropical",
+  "Red, Crunchy, Core",
+  "Bunch, Vine, Juicy",
+  "Red, Sweet, Seeds",
+  "Green, Juicy, Round",
+  "Green, Creamy, Pit",
+  "Citrus, Round, Peel",
+  "Fuzzy, Juicy, Stone",
+  "Yellow, Sour, Citrus",
+  "Fuzzy, Green, Seeds",
+];
+
 const triesPrompt = "Input number of tries, 'infinite' or 'auto':";
 let replay = true;
 
@@ -31,7 +44,8 @@ while (replay) {
     break;
   }
 
-  const fruit = fruits[Math.round(Math.random() * fruits.length)];
+  const randInd = Math.round(Math.random() * fruits.length);
+  const fruit = fruits[randInd];
   const guesses = [];
   let triesLeft =
     triesN === "infinite" ? -1 : triesN === "auto" ? fruit.length + 2 : Number(triesN);
@@ -46,6 +60,10 @@ while (replay) {
 
     for (let i = 0; i < guesses.length; i++) {
       promptText += guesses[i] + " ";
+    }
+
+    if (triesLeft >= 0 && triesLeft < fruits.length / 2) {
+      promptText += `\nHint: Fruit, ${hints[randInd]}`;
     }
 
     guess = prompt(
